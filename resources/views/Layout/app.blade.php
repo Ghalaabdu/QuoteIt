@@ -18,7 +18,7 @@
 >
 
     <nav class="relative sticky top-0 z-50 border-b border-white/30 bg-[#10081F] shadow-sm backdrop-blur-md">
-        <a href="{{ route('home') }}" class="site-name">QuoteIt</a>
+        <p class="site-name">QuoteIt</p>
         <ul class="mx-auto flex max-w-7xl items-center gap-6 px-4 py-1">
             
             @if (($page ?? '') === 'Sign Up')
