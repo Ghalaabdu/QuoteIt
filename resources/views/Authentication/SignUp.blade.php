@@ -13,7 +13,7 @@
                     <input id="name" name="name" type="text" class="input peer user-invalid:border-red-500"
     required minlength="2" maxlength="50" pattern="[A-Za-z\u0600-\u06FF ]+">
 
-                    <p class="mt-1 text-xs text-gray-500 peer-user-invalid:text-red-600">
+                    <p class="mt-1 text-xs text-white peer-user-invalid:text-red-600">
                         2–50 characters, letters only.
                     </p>
                 </div>
@@ -21,7 +21,7 @@
                     <label for="email" class="label">Email</label>
                     <input id="email" type="email" class="input peer user-invalid:border-red-500" required
                         pattern="[^@\s]+@[^@\s]+\.[A-Za-z]{2,}">
-                    <p class="mt-1 text-xs text-gray-500 peer-user-invalid:text-red-600">
+                    <p class="mt-1 text-xs text-white peer-user-invalid:text-red-600">
                         A valid email, e.g. name@example.com
                     </p>
                 </div>
@@ -30,12 +30,12 @@
                     <label for="password" class="label">Password</label>
                     <input id="password" type="password" class="input peer user-invalid:border-red-500" required
                         minlength="8">
-                    <p class="mt-1 text-xs text-gray-500 peer-user-invalid:text-red-600">
+                    <p class="mt-1 text-xs text-white peer-user-invalid:text-red-600">
                         At least 8 characters.
                     </p>
                 </div>
               
-                <p class="mb-4 text-sm text-gray-500">
+                <p class="mb-4 text-sm text-white">
                    You Already have an account? <a href="/login" class="text-blue-500 hover:underline">Log In</a>
                 </p>
 

@@ -14,22 +14,27 @@ Route::get('/', function (Request $request) {
         'editingIndex' => $request->integer('edit', -1),
         'otherQuotes' => [
     [
+        'author' => 'Lujain',
         'text' => 'The best way to predict the future is to invent it.',
-        'date' => 'Oct 10, 2026'
+        'date' => 'Oct 10, 2026',
     ],
     [
+        'author' => 'Sara',
         'text' => 'Simplicity is the soul of efficiency.',
-        'date' => 'Oct 12, 2026'
+        'date' => 'Oct 12, 2026',
     ],
     [
+        'author' => 'Noura',
         'text' => 'Code is like humor. When you have to explain it, it’s bad.',
-        'date' => 'Oct 14, 2026'
+        'date' => 'Oct 14, 2026',
     ],
     [
+        'author' => 'Reem',
         'text' => 'First, solve the problem. Then, write the code.',
-        'date' => 'Oct 16, 2026'
+        'date' => 'Oct 16, 2026',
     ],
 ],
+
     ]);
 })->name('home');
 

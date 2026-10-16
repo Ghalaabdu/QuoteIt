@@ -26,6 +26,8 @@
             @elseif(($page ?? '') === 'Log In')
                 <li><a href="/signup" class="btn-primary">Sign Up</a></li>
             @else
+                            <li><a href="/logout" class="btn-primary">Log Out</a></li>
+
                 <li>
                     <a href="/profile"
                         class="block rounded-full focus:outline-none focus-visible:ring-4 focus-visible:ring-tuwaiq-purple/30">
