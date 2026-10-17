@@ -16,7 +16,7 @@
         background-size: cover;
     "
 >
-<x-navbar/>
+<x-navbar :page="$page ?? ''" />
 
 
     <main>

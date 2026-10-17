@@ -1,5 +1,3 @@
-@extends('Layout.app')
-@section('content')
 
 <div class="grid h-full grid-cols-1 md:grid-cols-2">
 
@@ -12,4 +10,3 @@
 
     </div>
 </div>
-@endsection

@@ -3,17 +3,40 @@
 @section('title', 'Home')
 @section('content')
     @php
-        $state = ['name' => request('name'), 'quotes' => $myQuotes];
+        $myQuotes = request()->has('quotes')
+            ? array_filter((array) request()->query('quotes', []), 'is_string')
+            : [];
+        ksort($myQuotes);
+
+        $editingIndex = request()->integer('edit', -1);
+        $state = array_filter(['name' => request('name'), 'quotes' => $myQuotes]);
+
+        $otherQuotes = [];
+
+        /*
+        $otherQuotes = [
+            [
+                'author' => 'Lujain',
+                'text' => 'The best way to predict the future is to invent it.',
+                'date' => 'Oct 10, 2026',
+            ],
+            [
+                'author' => 'Sara',
+                'text' => 'Simplicity is the soul of efficiency.',
+                'date' => 'Oct 12, 2026',
+            ],
+        ];
+        */
     @endphp
 
     <div class="mx-auto max-w-3xl p-8">
 
         {{-- Quotes panel --}}
         <section class="space-y-4">
-            <h2 class="text-2xl font-bold"> Quotes</h2>
+            <h2 class="text-2xl font-bold text-white"> Quotes</h2>
 
             {{-- My quotes: purple, newest first --}}
-            @foreach (array_reverse($myQuotes, true) as $index => $quote)
+            @forelse (array_reverse($myQuotes, true) as $index => $quote)
                 @if ($index === $editingIndex)
                     <form method="GET" action="{{ route('home') }}"
                         class="space-y-3 rounded-2xl bg-tuwaiq-purple p-5 shadow">
@@ -24,7 +47,7 @@
                             <input type="hidden" name="name" value="{{ request('name') }}">
                         @endif
 
-                        <textarea name="quotes[{{ $index }}]" rows="3" required minlength="3" maxlength="280" class="input"
+                        <textarea name="quotes[{{ $index }}]" rows="3" required minlength="3" maxlength="155" class="input"
                             autofocus>{{ $quote }}</textarea>
 
                         <div class="flex gap-2">
@@ -35,7 +58,7 @@
                 @else
                     <blockquote class="relative rounded-2xl bg-tuwaiq-purple p-5 text-white shadow">
                         <p class="text-lg">“{{ $quote }}”</p>
-                        <p class="mt-2 text-sm font-semibold opacity-80">— {{ request('name', 'Guest') }}
+                        <p class="mt-2 text-sm font-semibold opacity-80"> —You
                          <span class="text-xs opacity-70">. {{ date('Y-m-d') }}</span></p>
 
                         
@@ -48,7 +71,9 @@
                         </div>
                     </blockquote>
                 @endif
-            @endforeach
+                  @empty
+                <p class="text-gray-500">No quotes yet. Be the first to share one!</p>
+            @endforelse
 
             {{-- Other people's quotes: teal and yellow, alternating --}}
             @foreach ($otherQuotes as $quote)
@@ -99,9 +124,9 @@
             @endif
 
             <div>
-                <textarea id="quote-body" name="quotes[]" rows="5" required minlength="3" maxlength="280" autofocus
+                <textarea id="quote-body" name="quotes[]" rows="5" required minlength="3" maxlength="155" autofocus
                     placeholder="Write your quote…" class="input peer resize-none user-invalid:border-red-500"></textarea>
-                <p class="mt-1 text-xs text-gray-500 peer-user-invalid:text-red-600">3–280 characters.</p>
+                <p class="mt-1 text-xs text-gray-500 peer-user-invalid:text-red-600">3–155 characters.</p>
             </div>
 
             <button type="submit" class="btn btn-primary w-full">Send</button>

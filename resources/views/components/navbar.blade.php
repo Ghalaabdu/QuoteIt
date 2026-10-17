@@ -1,3 +1,5 @@
+@props(['page' => ''])
+
  <nav class="relative sticky top-0 z-50 border-b border-white/30 bg-[#10081F] shadow-sm backdrop-blur-md">
         <p class="site-name">QuoteIt</p>
         <ul class="mx-auto flex max-w-7xl items-center gap-6 px-4 py-1">
@@ -7,7 +9,7 @@
             @elseif(($page ?? '') === 'Log In')
                 <li><a href="/signup" class="btn-primary">Sign Up</a></li>
             @else
-                @auth
+               
                     <li><a href="/logout" class="btn-primary">Log Out</a></li>
                     <li>
                         <a href="/profile"
@@ -17,14 +19,11 @@
                         </a>
                     </li>
                     <li>
-                        <p class="text-white">{{ auth()->user()->name }} </p>
+                        <p class="text-white">User Name </p>
                     </li>
 
 
-                @endauth
-                @guest
-                    <a href="/login" class="btn-primary">Log In</a>
-                @endguest
+               
             @endif
             <li class="ml-auto"><img src="{{ asset('images/logo.png') }}" class=" h-16 w-auto" alt="Logo"></li>
 

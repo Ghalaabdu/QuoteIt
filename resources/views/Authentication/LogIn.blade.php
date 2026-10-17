@@ -1,6 +1,8 @@
 @extends('Layout.AuthImg')
+@extends('Layout.app')
 
 @section('title', 'Log In')
+@section('content')
 @section('form')
 
     <div class="flex items-center justify-center p-8">
@@ -34,3 +36,5 @@
 
 
 @endsection
+@endsection
+

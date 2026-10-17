@@ -1,6 +1,9 @@
 @extends('Layout.AuthImg')
+@extends('Layout.app')
 
 @section('title', 'Sign Up')
+@section('content')
+
 @section('form')
 
         <div class=" items-center justify-center p-8">
@@ -43,3 +46,5 @@
         </div>
         
 @endsection
+@endsection
+
