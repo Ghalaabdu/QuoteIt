@@ -26,17 +26,25 @@
             @elseif(($page ?? '') === 'Log In')
                 <li><a href="/signup" class="btn-primary">Sign Up</a></li>
             @else
-                            <li><a href="/logout" class="btn-primary">Log Out</a></li>
+                     @auth
+                    <li><a href="/logout" class="btn-primary">Log Out</a></li>
+                    <li>
+                        <a href="/profile"
+                            class="block rounded-full focus:outline-none focus-visible:ring-4 focus-visible:ring-tuwaiq-purple/30">
+                            <img src="{{ asset('images/profile.jpeg') }}" alt="Profile"
+                                class="h-10 w-10 rounded-full object-cover ring-2 ring-tuwaiq-purple ring-offset-2 transition hover:scale-105">
+                        </a>
+                    </li>
+                    <li>
+                        <p class="text-white">{{ auth()->user()->name }} </p>
+                    </li>
 
-                <li>
-                    <a href="/profile"
-                        class="block rounded-full focus:outline-none focus-visible:ring-4 focus-visible:ring-tuwaiq-purple/30">
-                        <img src="{{ asset('images/profile.jpeg') }}" alt="Profile"
-                            class="h-10 w-10 rounded-full object-cover ring-2 ring-tuwaiq-purple ring-offset-2 transition hover:scale-105">
-                    </a>
-                </li>
-                <li><a href="/signup" class="text-white">{{ request('name','Guest') }} </a></li>
-            @endif
+
+                @endauth
+                @guest
+                    <a href="/login" class="btn-primary">Log In</a>
+                @endguest
+                 @endif
             <li class="ml-auto"><img src="{{ asset('images/logo.png') }}" class=" h-16 w-auto" alt="Logo"></li>
 
 

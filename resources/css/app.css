@@ -17,7 +17,7 @@
 }
 @layer components {
    .btn-primary {
-        @apply rounded-2xl bg-tuwaiq-teal px-6 py-3 text-lg font-medium text-white shadow-md transition hover:bg-tuwaiq-purple-light focus:outline-none focus-visible:ring-4 focus-visible:ring-tuwaiq-purple/30
+        @apply rounded-2xl bg-tuwaiq-purple px-6 py-3 text-lg font-medium text-white shadow-md transition hover:bg-tuwaiq-purple-light focus:outline-none focus-visible:ring-4 focus-visible:ring-tuwaiq-purple/30
 
     }
     .label {

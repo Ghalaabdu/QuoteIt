@@ -1,11 +1,10 @@
-@extends('Layout.app')
+@extends('Layout.AuthImg')
 
 @section('title', 'Sign Up')
-@section('content')
-    <div class="grid h-full grid-cols-1 md:grid-cols-2">
+@section('form')
 
         <div class=" items-center justify-center p-8">
-            <form action="{{ url('/') }}" method="GET" class="mx-auto  mt-15 max-w-xl rounded-lg  p-9 ">
+            <form action="{{ url('/') }}" method="GET" class="mx-auto  mt-5 max-w-xl rounded-lg  p-9 ">
                 @csrf
                 <h2 class="mb-4 text-2xl font-bold  text-center text-white">Sign Up</h2>
                 <div class="mb-4">
@@ -42,12 +41,5 @@
                 <button type="submit" class="btn-primary w-full">Sign Up</button>
             </form>
         </div>
-        <div class="hidden md:block ">
-            <div class="hidden md:order-last md:flex md:items-center md:justify-center mt-20">
-                <img src="{{ asset('images/signup.jpeg') }}" alt="Sign Up"
-                    class="w-full max-w-sm rounded-2xl object-contain">
-            </div>
-
-        </div>
-    </div>
+        
 @endsection
