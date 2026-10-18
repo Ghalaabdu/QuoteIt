@@ -3,9 +3,7 @@
 @section('title', 'Home')
 @section('content')
     @php
-        $myQuotes = request()->has('quotes')
-            ? array_filter((array) request()->query('quotes', []), 'is_string')
-            : [];
+        $myQuotes = request()->has('quotes') ? array_filter((array) request()->query('quotes', []), 'is_string') : [];
         ksort($myQuotes);
 
         $editingIndex = request()->integer('edit', -1);
@@ -13,7 +11,6 @@
 
         $otherQuotes = [];
 
-        /*
         $otherQuotes = [
             [
                 'author' => 'Lujain',
@@ -26,7 +23,7 @@
                 'date' => 'Oct 12, 2026',
             ],
         ];
-        */
+
     @endphp
 
     <div class="mx-auto max-w-3xl p-8">
@@ -40,8 +37,10 @@
                 @if ($index === $editingIndex)
                     <form method="GET" action="{{ route('home') }}"
                         class="space-y-3 rounded-2xl bg-tuwaiq-purple p-5 shadow">
-                        @foreach (Arr::except($myQuotes, $index) as $otherIndex => $otherQuote)
-                            <input type="hidden" name="quotes[{{ $otherIndex }}]" value="{{ $otherQuote }}">
+                        @foreach ($myQuotes as $otherIndex => $otherQuote)
+                            @if ($otherIndex !== $index)
+                                <input type="hidden" name="quotes[{{ $otherIndex }}]" value="{{ $otherQuote }}">
+                            @endif
                         @endforeach
                         @if (request('name'))
                             <input type="hidden" name="name" value="{{ request('name') }}">
@@ -59,9 +58,10 @@
                     <blockquote class="relative rounded-2xl bg-tuwaiq-purple p-5 text-white shadow">
                         <p class="text-lg">“{{ $quote }}”</p>
                         <p class="mt-2 text-sm font-semibold opacity-80"> —You
-                         <span class="text-xs opacity-70">. {{ date('Y-m-d') }}</span></p>
+                            <span class="text-xs opacity-70">. {{ date('Y-m-d') }}</span>
+                        </p>
 
-                        
+
                         <div class="absolute right-4 bottom-5 flex gap-3">
                             <a href="{{ route('home', [...$state, 'edit' => $index]) }}"
                                 class="hover:text-tuwaiq-orange">✎</a>
@@ -71,14 +71,13 @@
                         </div>
                     </blockquote>
                 @endif
-                  @empty
+            @empty
                 <p class="text-gray-500">No quotes yet. Be the first to share one!</p>
             @endforelse
 
             {{-- Other people's quotes: teal and yellow, alternating --}}
             @foreach ($otherQuotes as $quote)
-                <blockquote
-                    class="rounded-2xl p-5 text-tuwaiq-purple shadow bg-white">
+                <blockquote class="rounded-2xl p-5 text-tuwaiq-purple shadow bg-white">
                     <p class="text-lg">“{{ $quote['text'] }}”</p>
                     <p class="mt-2 text-sm">
                         <span class="font-semibold">— {{ $quote['author'] }}</span>
@@ -133,4 +132,3 @@
         </form>
     </div>
 @endsection
-
