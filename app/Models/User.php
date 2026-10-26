@@ -29,4 +29,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function quotes() {
+        return $this->hasMany(Quote::class);
+    }
+
+    public function likedQuotes()
+{
+    return $this->belongsToMany(Quote::class, 'likes', 'user_id', 'quote_id')->withTimestamps();
+}
 }

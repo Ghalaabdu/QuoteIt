@@ -1,40 +1,33 @@
-@extends('Layout.AuthImg')
 @extends('Layout.app')
 
 @section('title', 'Log In')
+
 @section('content')
-@section('form')
-
-    <div class="flex items-center justify-center p-8">
-        <form action="{{ url('/') }}" method="GET" class="mx-auto mt-5 w-full max-w-xl rounded-lg p-9">
+<div class="flex min-h-[75vh] items-center justify-center px-4">
+    <div class="w-full max-w-md rounded-3xl bg-[#222831]/95 border border-[#393E46] p-8 shadow-2xl backdrop-blur-md">
+        
+        <form method="post" action="/login" class="space-y-4">
             @csrf
+            
+            <h2 class="text-3xl font-bold text-center text-[#DFD0B8] mb-6">Log In</h2>
 
-            <h2 class="mb-2 text-center text-2xl font-bold text-white">Log In</h2>
-
-            <div class="mb-4">
-                <label for="email" class="label">Email</label>
-                <input id="email" type="email" class="input peer user-invalid:border-red-500" required
-                    pattern="[^@\s]+@[^@\s]+\.[A-Za-z]{2,}">
-                <p class="mt-1 text-xs text-white peer-user-invalid:text-red-600">
-                    A valid email, e.g. name@example.com
-                </p>
-
+            <div>
+                <label for="email" class="label text-[#DCD7C9]">Email</label>
+                <input id="email" name="email" type="email" class="input" required value="{{ old('email') }}">
             </div>
 
-            <div class="mb-4">
-                <label for="password" class="label">Password</label>
-                <input id="password" type="password" class="input peer user-invalid:border-red-500" required
-                    minlength="8">
-                <p class="mt-1 text-xs text-white peer-user-invalid:text-red-600">
-                    At least 8 characters.
-                </p>
+            <div>
+                <label for="password" class="label text-[#DCD7C9]">Password</label>
+                <input id="password" name="password" type="password" class="input" required>
             </div>
+          
+            <p class="text-sm text-[#DCD7C9] pt-2">
+               Don't have an account? <a href="/signup" class="text-[#DFD0B8] hover:underline font-semibold">Sign Up</a>
+            </p>
 
-            <button type="submit" class="btn btn-primary w-full">Log In</button>
+            <button type="submit" class="btn-primary w-full py-3 mt-2">Log In</button>
         </form>
+
     </div>
-
-
+</div>
 @endsection
-@endsection
-
