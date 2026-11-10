@@ -32,6 +32,9 @@ RUN composer install --no-interaction --optimize-autoloader --no-dev
 # Set permissions
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
+# Create SQLite database file
+RUN touch database/database.sqlite && chmod 775 database/database.sqlite
+
 EXPOSE 80
 
 CMD php artisan serve --host=0.0.0.0 --port=${PORT:-80}
