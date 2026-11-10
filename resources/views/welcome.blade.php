@@ -7,7 +7,7 @@
         $currentFilter = request('filter', 'all');
     @endphp
 
-    {{-- Hero Banner ممتد بعرض الشاشة بالكامل --}}
+    
     <div class="relative w-full bg-gradient-to-r from-[#222831] via-[#393E46] to-[#222831] py-12 px-6 text-center border-y border-[#DFD0B8]/20 shadow-2xl mb-8 -mt-6">
         <div class="relative z-10 max-w-3xl mx-auto space-y-3">
             <span class="inline-block rounded-full bg-[#DFD0B8]/10 px-4 py-1.5 text-xs font-semibold tracking-wider text-[#DFD0B8] uppercase border border-[#DFD0B8]/20">
