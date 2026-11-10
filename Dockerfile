@@ -1,6 +1,6 @@
 FROM php:8.4-fpm
 
-# Install system dependencies
+# Install system dependencies & Node.js
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -9,7 +9,9 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip \
     unzip \
-    nginx
+    nginx \
+    nodejs \
+    npm
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -29,16 +31,13 @@ COPY . /var/www
 # Install PHP dependencies
 RUN composer install --no-interaction --optimize-autoloader --no-dev
 
-# Install Node.js and build frontend assets (Vite)
-RUN apt-get update && apt-get install -y nodejs npm
+# Install Node dependencies and build Vite assets
 RUN npm install && npm run build
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
-# Create SQLite database, run migrations, and start server
-RUN touch database/database.sqlite && chmod 775 database/database.sqlite
-
 EXPOSE 80
 
-CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-80}
+# Create SQLite database, run migrations, and start server
+CMD php -r "touch('database/database.sqlite');" && chmod 775 database/database.sqlite && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-80}
