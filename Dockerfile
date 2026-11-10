@@ -26,16 +26,19 @@ WORKDIR /var/www
 # Copy existing application directory
 COPY . /var/www
 
-# Install dependencies
+# Install PHP dependencies
 RUN composer install --no-interaction --optimize-autoloader --no-dev
+
+# Install Node.js and build frontend assets (Vite)
+RUN apt-get update && apt-get install -y nodejs npm
+RUN npm install && npm run build
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
-# Create SQLite database and run migrations
+# Create SQLite database, run migrations, and start server
 RUN touch database/database.sqlite && chmod 775 database/database.sqlite
 
 EXPOSE 80
 
-# Run migrations and start server
 CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-80}
