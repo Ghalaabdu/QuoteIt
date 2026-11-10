@@ -39,5 +39,5 @@ RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
 EXPOSE 80
 
-# Create SQLite database, run migrations, and start server
-CMD php -r "touch('database/database.sqlite');" && chmod 775 database/database.sqlite && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-80}
+## Create SQLite database, run migrations, and start server using PHP built-in server rooted in public/
+CMD php -r "touch('database/database.sqlite');" && chmod 775 database/database.sqlite && php artisan migrate --force && php -S 0.0.0.0:${PORT:-80} -t public
